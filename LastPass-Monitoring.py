@@ -32,6 +32,10 @@ REQUEST['data']['to'] = FIFTEEN_MINUTES_AGO
 
 r = requests.post(API_URL, data=json.dumps(REQUEST))
 r_json = json.loads(r.text)
+if "Authorization Error" in r.text:
+    logging.error("Failed to authenticate against API")
+    exit(1)
+
 r_status = r_json['status']
 if r_status == 'OK':
     logging.info("Successfully authenticated against API")
