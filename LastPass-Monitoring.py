@@ -62,6 +62,9 @@ try:
             else:
                 logging.info("{} from {} || {} on {} ".format(str(USERNAME), str(IPADDR), str(ACTION), str(DATA)))
             COUNTER += 1
+        except KeyError as KE:
+            logging.error("Finished Parsing log")
+            exit(0)
         except Exception as err:
             logging.error(str(err))
 
